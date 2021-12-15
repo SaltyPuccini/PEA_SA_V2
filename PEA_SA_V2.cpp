@@ -137,7 +137,7 @@ public:
 class Dostep {
 public:
 	float czasStopu = 60;
-	double T = 10000, Tmin = 0.001, coolingRate = 0.999, wewnetrznaPetla = 50;
+	double T = 10000, Tmin = 0.001, coolingRate = 0.999, wewnetrznaPetla = 40;
 
 	char wejscie;
 	bool petla = true;
@@ -150,7 +150,7 @@ public:
 			cout << endl;
 			cout << "0. Wczytaj dane z pliku" << endl;
 			cout << "1. Wprowadz parametry" << endl;
-			cout << "2. Test algorytmu (bazowo dobrane parametry: Czas stopu = 60s, Temperatura poczatkowa = 10000, Temperatura minimalna = 0.001, Cooling rate = 0.999, Petla wewnetrzna = 50 )" << endl;
+			cout << "2. Test algorytmu (bazowo dobrane parametry: Czas stopu = 60s, Temperatura poczatkowa = 10000, Temperatura minimalna = 0.001, Cooling rate = 0.999, Petla wewnetrzna = 40 )" << endl;
 			cout << "3. Test algorytmu (parametry uzytkownika: Czas stopu = " << czasStopu << "s, Temperatura poczatkowa = " << T << ", Temperatura minimalna = " << Tmin << ", Cooling rate = " << coolingRate << ", Petla wewnetrzna = " << wewnetrznaPetla << " ) " << endl;
 			//cout << "3. Rozpocznij testy czasowe" << endl;
 			cout << "q. Wyjdz" << endl;
@@ -167,12 +167,12 @@ public:
 				if (!wczyt.file_read_graph(sciezka))
 					break;
 
-				for (int i = 0; i < wczyt.macierz.size(); i++) {
-					for (int j = 0; j < wczyt.macierz[i].size(); j++) {
-						cout << wczyt.macierz[i][j] << " ";
+				//Wypisuję tylko pierwszy rząd macierzy, żeby było wiadomo, czy poprawna macierz została wczytana, jednocześnie nie zaśmiecając konsoli.
+				cout << "Pierwszy rzad macierzy:" << endl;
+					for (int j = 0; j < wczyt.macierz[0].size(); j++) {
+						cout << wczyt.macierz[0][j] << " ";
 					}
-					cout << endl;
-				}
+
 				cout << endl;
 				break;
 
@@ -182,7 +182,7 @@ public:
 				break;
 			case '2':
 
-				algorytm.SA(wczyt.macierz, 60, 10000, 0.001, 0.999, 50);
+				algorytm.SA(wczyt.macierz, 60, 10000, 0.001, 0.999, 40);
 				break;
 
 
